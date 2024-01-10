@@ -33,6 +33,8 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnAgregar = new System.Windows.Forms.Button();
+            this.bmodif = new System.Windows.Forms.Button();
+            this.btnborrar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvpokemon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_pokemon)).BeginInit();
             this.SuspendLayout();
@@ -84,11 +86,33 @@
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
+            // bmodif
+            // 
+            this.bmodif.Location = new System.Drawing.Point(155, 365);
+            this.bmodif.Name = "bmodif";
+            this.bmodif.Size = new System.Drawing.Size(75, 23);
+            this.bmodif.TabIndex = 5;
+            this.bmodif.Text = "modificar";
+            this.bmodif.UseVisualStyleBackColor = true;
+            this.bmodif.Click += new System.EventHandler(this.bmodif_Click);
+            // 
+            // btnborrar
+            // 
+            this.btnborrar.Location = new System.Drawing.Point(249, 365);
+            this.btnborrar.Name = "btnborrar";
+            this.btnborrar.Size = new System.Drawing.Size(75, 23);
+            this.btnborrar.TabIndex = 6;
+            this.btnborrar.Text = "borrar";
+            this.btnborrar.UseVisualStyleBackColor = true;
+            this.btnborrar.Click += new System.EventHandler(this.btnborrar_Click);
+            // 
             // fmrpokemons
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(945, 450);
+            this.Controls.Add(this.btnborrar);
+            this.Controls.Add(this.bmodif);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listBox1);
@@ -111,6 +135,8 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.Button bmodif;
+        private System.Windows.Forms.Button btnborrar;
     }
 }
 

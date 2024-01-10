@@ -40,6 +40,7 @@ namespace ado_net_ejemplo
                 listaPokemon = negocio.Listar();
                 dgvpokemon.DataSource = listaPokemon;
                 dgvpokemon.Columns["UrlImagen"].Visible = false;//borra la columnas de las URL
+                dgvpokemon.Columns["Id"].Visible = false;
                 cargarImagen(listaPokemon[0].UrlImagen);
             }
             catch (Exception ex)
@@ -73,6 +74,34 @@ namespace ado_net_ejemplo
             alta.ShowDialog();
             cargar();
 
+        }
+
+        private void bmodif_Click(object sender, EventArgs e)
+        {
+            //primero precargamos el pokeon seleccionado
+            Pokemon seleccionado;
+            seleccionado = (Pokemon)dgvpokemon.CurrentRow.DataBoundItem;
+            frmAltaPokemon modificar = new frmAltaPokemon(seleccionado);
+            modificar.ShowDialog();
+            cargar();
+
+        }
+
+        private void btnborrar_Click(object sender, EventArgs e)
+        {
+            PokemonNegocio negocio = new PokemonNegocio();
+            Pokemon seleccionado;
+            try
+            {
+                seleccionado = (Pokemon)dgvpokemon.CurrentRow.DataBoundItem;
+                negocio.eliminar(seleccionado.Id);
+                cargar();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }

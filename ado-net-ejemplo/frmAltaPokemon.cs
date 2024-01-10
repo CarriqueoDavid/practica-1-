@@ -8,17 +8,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Dominio;
-using negocio;
+using negocio;//para poder usar el objeto
 
 namespace ado_net_ejemplo
 {
     public partial class frmAltaPokemon : Form
     {
+        private Pokemon pokemon = null;
         public frmAltaPokemon()
         {
             InitializeComponent();
         }
-
+        public frmAltaPokemon(Pokemon pokemon)
+        {
+            InitializeComponent();
+            this.pokemon=pokemon;
+            Text = "Modificar Pokemon";
+        }
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Close();
@@ -26,19 +32,36 @@ namespace ado_net_ejemplo
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            Pokemon poke = new Pokemon();
+            
             PokemonNegocio negocio = new PokemonNegocio();
 
             try
             {
-                poke.Numero = int.Parse(txtNumero.Text);
-                poke.Nombre = txtNombre.Text;
-                poke.Descripcion = txtDescripcion.Text;
-                poke.UrlImagen =txtUrlImagen.Text;
-                poke.Tipo = (Elemento)cboTipo.SelectedItem;
-                poke.Debilidad=(Elemento)cboDebilidad.SelectedItem;
-                negocio.agregar(poke);
-                MessageBox.Show("agregado exitosamente");
+                if (pokemon == null)
+                    pokemon = new Pokemon();
+                pokemon.Numero = int.Parse(txtNumero.Text);//esta casteado a entero por eso en int.Parse
+                pokemon.Nombre = txtNombre.Text;
+                pokemon.Descripcion = txtDescripcion.Text;
+                pokemon.UrlImagen = txtUrlImagen.Text;
+                pokemon.Tipo = (Elemento)cboTipo.SelectedItem;//desde el combobox obtiene un elemento, entonces por eso lo casteo
+                pokemon.Debilidad = (Elemento)cboDebilidad.SelectedItem;
+            
+                
+                if(pokemon.Id!=0)
+                {
+                    negocio.modificar(pokemon);
+                    MessageBox.Show("Modificado exitosamente");
+
+                }
+                else
+                {
+                    negocio.agregar(pokemon);
+                    MessageBox.Show("agregado exitosamente");
+
+                }
+                
+
+                
                 Close();
 
             }
@@ -53,9 +76,22 @@ namespace ado_net_ejemplo
             ElementoNegocio elementoNegocio = new ElementoNegocio();
             try
             {
-                cboTipo.DataSource = elementoNegocio.listar();
-                cboDebilidad.DataSource = elementoNegocio.listar();
-
+                cboTipo.DataSource = elementoNegocio.listar();//me completa los combobox
+                cboTipo.ValueMember = "Id";
+                cboTipo.DisplayMember = "Descripcion";
+                cboDebilidad.DataSource = elementoNegocio.listar();//tengo que repetir por cada combobox que tenga (desplegable)
+                cboDebilidad.ValueMember="Id";
+                cboDebilidad.DisplayMember = "Descripcion";
+                if(pokemon!=null)
+                {
+                    txtNumero.Text = pokemon.Numero.ToString();
+                    txtNombre.Text = pokemon.Nombre;
+                    txtDescripcion.Text = pokemon.Descripcion;
+                    txtUrlImagen.Text = pokemon.UrlImagen;
+                    cargarImagen(pokemon.UrlImagen);
+                    cboTipo.SelectedValue = pokemon.Tipo.Id;
+                    cboDebilidad.SelectedValue = pokemon.Debilidad.Id;
+                }
             }
             catch (Exception ex)
             {

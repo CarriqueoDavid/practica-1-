@@ -9,7 +9,8 @@ namespace Dominio
 {
     public class Pokemon
     {
-        [DisplayName("Número")]
+        public int Id { get; set; }
+        [DisplayName("Número")]//para ponerle acento al nombre de la columna
         public int Numero {  get; set; }//propiedades
         public string Nombre { get; set; }
         [DisplayName("Descripción")]
