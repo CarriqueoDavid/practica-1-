@@ -9,12 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Dominio;
 using negocio;//para poder usar el objeto
+using System.IO;//para usar file.copy(),clase estatica
+using System.Configuration;
 
 namespace ado_net_ejemplo
 {
     public partial class frmAltaPokemon : Form
     {
         private Pokemon pokemon = null;
+        private OpenFileDialog archivo = null;//lo cree para guardar la imagen localmente
         public frmAltaPokemon()
         {
             InitializeComponent();
@@ -60,7 +63,11 @@ namespace ado_net_ejemplo
 
                 }
                 
-
+                //guardo imagen si la levanto localmente
+                if(archivo!=null&& !(txtUrlImagen.Text.ToUpper().Contains("HTTP")))
+                {
+                    File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);
+                }
                 
                 Close();
 
@@ -114,6 +121,20 @@ namespace ado_net_ejemplo
             catch (Exception ex)
             {
                 pbxPokemon.Load("https://img.freepik.com/vector-premium/vector-icono-imagen-predeterminado-pagina-imagen-faltante-diseno-sitio-web-o-aplicacion-movil-no-hay-foto-disponible_87543-11093.jpg?w=2000");
+            }
+        }
+
+        private void btnagregarimagen_Click(object sender, EventArgs e)
+        {
+
+            archivo = new OpenFileDialog();
+            archivo.Filter = "jpg|*.jpg";
+            if(archivo.ShowDialog()==DialogResult.OK)
+            {
+                txtUrlImagen.Text=archivo.FileName;
+                cargarImagen(archivo.FileName);
+                //guardo imagen
+                // cambie la linea a otro metodo File.Copy(archivo.FileName,ConfigurationManager.AppSettings["images-folder"]+archivo.SafeFileName);
             }
         }
     }

@@ -35,6 +35,16 @@
             this.btnAgregar = new System.Windows.Forms.Button();
             this.bmodif = new System.Windows.Forms.Button();
             this.btnborrar = new System.Windows.Forms.Button();
+            this.btneliminarlogico = new System.Windows.Forms.Button();
+            this.lfiltro = new System.Windows.Forms.Label();
+            this.txtfiltro = new System.Windows.Forms.TextBox();
+            this.btnfiltro = new System.Windows.Forms.Button();
+            this.lbcampo = new System.Windows.Forms.Label();
+            this.lbcriterio = new System.Windows.Forms.Label();
+            this.lbclave = new System.Windows.Forms.Label();
+            this.cbocampo = new System.Windows.Forms.ComboBox();
+            this.cbocriterio = new System.Windows.Forms.ComboBox();
+            this.txtclave = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvpokemon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_pokemon)).BeginInit();
             this.SuspendLayout();
@@ -102,15 +112,115 @@
             this.btnborrar.Name = "btnborrar";
             this.btnborrar.Size = new System.Drawing.Size(75, 23);
             this.btnborrar.TabIndex = 6;
-            this.btnborrar.Text = "borrar";
+            this.btnborrar.Text = "borrar fisico";
             this.btnborrar.UseVisualStyleBackColor = true;
             this.btnborrar.Click += new System.EventHandler(this.btnborrar_Click);
+            // 
+            // btneliminarlogico
+            // 
+            this.btneliminarlogico.Location = new System.Drawing.Point(376, 365);
+            this.btneliminarlogico.Name = "btneliminarlogico";
+            this.btneliminarlogico.Size = new System.Drawing.Size(105, 23);
+            this.btneliminarlogico.TabIndex = 7;
+            this.btneliminarlogico.Text = "eliminar logico";
+            this.btneliminarlogico.UseVisualStyleBackColor = true;
+            this.btneliminarlogico.Click += new System.EventHandler(this.btneliminarlogico_Click);
+            // 
+            // lfiltro
+            // 
+            this.lfiltro.AutoSize = true;
+            this.lfiltro.Location = new System.Drawing.Point(51, 20);
+            this.lfiltro.Name = "lfiltro";
+            this.lfiltro.Size = new System.Drawing.Size(26, 13);
+            this.lfiltro.TabIndex = 8;
+            this.lfiltro.Text = "filtro";
+            // 
+            // txtfiltro
+            // 
+            this.txtfiltro.Location = new System.Drawing.Point(83, 14);
+            this.txtfiltro.Name = "txtfiltro";
+            this.txtfiltro.Size = new System.Drawing.Size(135, 20);
+            this.txtfiltro.TabIndex = 9;
+            this.txtfiltro.TextChanged += new System.EventHandler(this.txtfiltro_TextChanged);
+            // 
+            // btnfiltro
+            // 
+            this.btnfiltro.Location = new System.Drawing.Point(581, 410);
+            this.btnfiltro.Name = "btnfiltro";
+            this.btnfiltro.Size = new System.Drawing.Size(75, 23);
+            this.btnfiltro.TabIndex = 10;
+            this.btnfiltro.Text = "buscar";
+            this.btnfiltro.UseVisualStyleBackColor = true;
+            this.btnfiltro.Click += new System.EventHandler(this.btnfiltro_Click);
+            // 
+            // lbcampo
+            // 
+            this.lbcampo.AutoSize = true;
+            this.lbcampo.Location = new System.Drawing.Point(12, 413);
+            this.lbcampo.Name = "lbcampo";
+            this.lbcampo.Size = new System.Drawing.Size(39, 13);
+            this.lbcampo.TabIndex = 11;
+            this.lbcampo.Text = "campo";
+            // 
+            // lbcriterio
+            // 
+            this.lbcriterio.AutoSize = true;
+            this.lbcriterio.Location = new System.Drawing.Point(210, 415);
+            this.lbcriterio.Name = "lbcriterio";
+            this.lbcriterio.Size = new System.Drawing.Size(38, 13);
+            this.lbcriterio.TabIndex = 12;
+            this.lbcriterio.Text = "criterio";
+            // 
+            // lbclave
+            // 
+            this.lbclave.AutoSize = true;
+            this.lbclave.Location = new System.Drawing.Point(390, 415);
+            this.lbclave.Name = "lbclave";
+            this.lbclave.Size = new System.Drawing.Size(26, 13);
+            this.lbclave.TabIndex = 13;
+            this.lbclave.Text = "filtro";
+            // 
+            // cbocampo
+            // 
+            this.cbocampo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbocampo.FormattingEnabled = true;
+            this.cbocampo.Location = new System.Drawing.Point(58, 412);
+            this.cbocampo.Name = "cbocampo";
+            this.cbocampo.Size = new System.Drawing.Size(121, 21);
+            this.cbocampo.TabIndex = 14;
+            this.cbocampo.SelectedIndexChanged += new System.EventHandler(this.cbocampo_SelectedIndexChanged);
+            // 
+            // cbocriterio
+            // 
+            this.cbocriterio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbocriterio.FormattingEnabled = true;
+            this.cbocriterio.Location = new System.Drawing.Point(249, 412);
+            this.cbocriterio.Name = "cbocriterio";
+            this.cbocriterio.Size = new System.Drawing.Size(121, 21);
+            this.cbocriterio.TabIndex = 15;
+            // 
+            // txtclave
+            // 
+            this.txtclave.Location = new System.Drawing.Point(422, 412);
+            this.txtclave.Name = "txtclave";
+            this.txtclave.Size = new System.Drawing.Size(100, 20);
+            this.txtclave.TabIndex = 16;
             // 
             // fmrpokemons
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(945, 450);
+            this.Controls.Add(this.txtclave);
+            this.Controls.Add(this.cbocriterio);
+            this.Controls.Add(this.cbocampo);
+            this.Controls.Add(this.lbclave);
+            this.Controls.Add(this.lbcriterio);
+            this.Controls.Add(this.lbcampo);
+            this.Controls.Add(this.btnfiltro);
+            this.Controls.Add(this.txtfiltro);
+            this.Controls.Add(this.lfiltro);
+            this.Controls.Add(this.btneliminarlogico);
             this.Controls.Add(this.btnborrar);
             this.Controls.Add(this.bmodif);
             this.Controls.Add(this.btnAgregar);
@@ -137,6 +247,16 @@
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button bmodif;
         private System.Windows.Forms.Button btnborrar;
+        private System.Windows.Forms.Button btneliminarlogico;
+        private System.Windows.Forms.Label lfiltro;
+        private System.Windows.Forms.TextBox txtfiltro;
+        private System.Windows.Forms.Button btnfiltro;
+        private System.Windows.Forms.Label lbcampo;
+        private System.Windows.Forms.Label lbcriterio;
+        private System.Windows.Forms.Label lbclave;
+        private System.Windows.Forms.ComboBox cbocampo;
+        private System.Windows.Forms.ComboBox cbocriterio;
+        private System.Windows.Forms.TextBox txtclave;
     }
 }
 
